@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Data / artifacts
+data/
+artifacts/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Virtualenv
+venv/
+.env
