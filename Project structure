@@ -1,0 +1,8 @@
+chiAI-Product-Orchestrator/
+├─ artifacts/          # models & outputs (not in git)
+├─ data/               # data files (synthetic or sample)
+├─ notebooks/          # exploratory notebooks
+├─ src/                # scripts (product_orchestrator.py)
+├─ requirements.txt
+├─ README.md
+└─ .gitignore
