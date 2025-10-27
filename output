@@ -1,0 +1,58 @@
+ Synthetic data rows: 2880
+        date product_id   price  marketing_spend  promo_flag  stock_level  \
+0 2022-01-01       P001  190.64        39.122969           0          852   
+1 2022-02-01       P001  190.64       125.665227           0         1069   
+2 2022-03-01       P001  190.64       201.777746           0          871   
+3 2022-04-01       P001  190.64       690.601960           1          924   
+4 2022-05-01       P001  190.64       211.397168           0          989   
+
+  category region  sales  
+0      Pro   APAC    151  
+1      Pro   APAC    191  
+2      Pro   APAC    223  
+3      Pro   APAC    494  
+4      Pro   APAC    266  
+After feature engineering: (2880, 19)
+        date product_id   price  marketing_spend  promo_flag  stock_level  \
+0 2022-01-01       P001  190.64        39.122969           0          852   
+1 2022-02-01       P001  190.64       125.665227           0         1069   
+2 2022-03-01       P001  190.64       201.777746           0          871   
+3 2022-04-01       P001  190.64       690.601960           1          924   
+4 2022-05-01       P001  190.64       211.397168           0          989   
+
+  category region  sales  year  month  month_sin     month_cos  sales_lag_1  \
+0      Pro   APAC    151  2022      1   0.500000  8.660254e-01        151.0   
+1      Pro   APAC    191  2022      2   0.866025  5.000000e-01        151.0   
+2      Pro   APAC    223  2022      3   1.000000  6.123234e-17        191.0   
+3      Pro   APAC    494  2022      4   0.866025 -5.000000e-01        223.0   
+4      Pro   APAC    266  2022      5   0.500000 -8.660254e-01        494.0   
+
+   sales_lag_3  sales_roll_3  price_ratio  category_code  region_code  
+0        151.0    151.000000          1.0              2            1  
+1        151.0    171.000000          1.0              2            1  
+2        151.0    188.333333          1.0              2            1  
+3        151.0    302.666667          1.0              2            1  
+4        191.0    327.666667          1.0              2            1  
+
+--- EDA Summary ---
+Date range: 2022-01-01 00:00:00 to 2024-12-01 00:00:00
+Products: 80
+Sales (summary):
+count    2880.000000
+mean      492.596181
+std       340.540469
+min        52.000000
+25%       254.000000
+50%       413.000000
+75%       644.500000
+max      2919.000000
+Name: sales, dtype: float64
+/tmp/ipython-input-956045452.py:128: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df['sales_lag_1'] = df.groupby('product_id')['sales'].shift(1).fillna(method='bfill')
+/tmp/ipython-input-956045452.py:129: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  df['sales_lag_3'] = df.groupby('product_id')['sales'].shift(3).fillna(method='bfill')
+Train up to date (inclusive): 2024-05-01 00:00:00
+Train rows: 2320 Test rows: 560
+RandomForest RMSE: 101.77, R2: 0.923
+Saved artifacts under ./artifacts/
+Done. RandomForest model trained and artifacts saved.
